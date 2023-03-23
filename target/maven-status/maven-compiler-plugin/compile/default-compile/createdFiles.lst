@@ -1,0 +1,10 @@
+com\csc340sp23\customer\Customer.class
+com\csc340sp23\admin\Book.class
+com\csc340sp23\admin\BookController.class
+com\csc340sp23\admin\BookRepository.class
+com\csc340sp23\PrototypeDemoApplication.class
+com\csc340sp23\admin\MvcConfig.class
+com\csc340sp23\admin\BookService.class
+com\csc340sp23\customer\CustomerRepository.class
+com\csc340sp23\customer\CustomerController.class
+com\csc340sp23\customer\CustomerService.class

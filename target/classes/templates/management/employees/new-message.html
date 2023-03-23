@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Message Jenkins, Jerry</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+        
+
+    </head>
+    <body>
+        <div class="container">
+
+            <h3 style="text-align:center;">Employee Message:</h3>
+            <h4 style="text-align:center;">Jenkins, Jerry</h4>
+
+            <div style="align-content: center;">
+                <form action="/book/create" method="post">
+                    <div class="form-group">
+                        <label for="name">Message:</label>
+                        <textarea class="form-control" name="title" id="title" placeholder="Enter message" rows="8"></textarea>
+                    </div>
+                    <a href="/admin/employees" class="btn btn-primary" >Submit</a>
+                </form>
+
+
+            </div>
+        </div>
+        
+    </body>
+</html>
