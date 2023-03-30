@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/home")
 public class PrototypeController {
     
-    @GetMapping("/home")
+    @GetMapping("")
     public String getHome() {
         return "project/home";
     }

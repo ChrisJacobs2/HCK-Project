@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.csc340-sp23</groupId>
-	<artifactId>prototype-presentation</artifactId>
+	<artifactId>HCK-springboot-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>prototype-presentation</name>
+	<name>HCK-springboot-app</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
