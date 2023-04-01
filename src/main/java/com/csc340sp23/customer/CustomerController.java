@@ -27,35 +27,57 @@ public class CustomerController {
     }
     
     @GetMapping("/booking")
-    public String getBookingList() {
+    public String getBookingList(Model model) {
+        model.addAttribute("user", bookingService.getAllBookings());
         return "customer/booking/booking-list";
     }
-    @GetMapping("/rooms")
-    public String getAvailableRooms(Model model) {
-        List<Booking> bookings = bookingService.getAvailableRooms();
-        model.addAttribute("rooms",bookings);
-       return "customer/booking/rooms-available";
-    }
-    @GetMapping("/bookings/{roomNumber}")
-    public String showBookingForm(@PathVariable("roomNumber") String roomNumber, Model model) {
-        Booking booking = bookingService.getRoomByNumber(roomNumber);
-        model.addAttribute("room", booking);
-        model.addAttribute("booking", new Booking());
-        return "booking";
+    
+    @GetMapping("/id={id}")
+    public String getBookingById(@PathVariable long id, Model model) {
+        model.addAttribute("user", bookingService.getBookingById(id));
+        return "customer/booking-detail";
     }
     
+    @GetMapping("/delete/id={id}")
+    public String deleteBooking(@PathVariable long bookId, Model model) {
+        bookingService.deleteBooking(bookId);
+        return "redirect:/user/booking";
+    }
+    @PostMapping("/create")
+    public String createBooking(Booking booking) {
+
+        bookingService.saveBooking(booking);
+        return "redirect:/user/booking";
+    }
     
+    @PostMapping("/update")
+    public String updateBooking(Booking booking) {
+        bookingService.saveBooking(booking);
+        return "redirect:/user/booking";
+    }
     
-    
-    @GetMapping("booking/new-booking")
-    public String newBookingForm() {
+    @GetMapping("/new-booking")
+    public String newbookingForm(Model model) {
         return "customer/booking/new-booking";
     }
     
-    @GetMapping("booking/details")
-    public String bookingDetails() {
-        return "customer/booking/booking-detail";
+    @GetMapping("/update/id={id}")
+    public String updateBookingForm(@PathVariable long id, Model model) {
+        model.addAttribute("user", bookingService.getBookingById(id));
+        return "redirect:/user/booking";
     }
+   
+    
+   
+    
+    
+    
+    
+    
+    //@GetMapping("booking/details")
+    //public String bookingDetails() {
+      //  return "customer/booking/booking-detail";
+    //}
     
     @GetMapping("/complaints")
     public String getHelp() {
@@ -67,12 +89,7 @@ public class CustomerController {
     public String getRoomService() {
         return "customer/room-service/service-list";
     }
-    @PostMapping("/bookings")
-    public String bookRoom(@ModelAttribute("booking")Booking booking){
-        Booking book = bookingService.getRoomByNumber(booking.getRoomNumber());
-        bookingService.bookRoom(book);
-        return "redirect:/bookings/comfirmation";
-    }
+  
    
     
 

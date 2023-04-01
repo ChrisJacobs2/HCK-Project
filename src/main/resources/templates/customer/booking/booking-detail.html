@@ -16,17 +16,33 @@
             <h1 style="text-align:center;">Booking Info</h1>
             <div class="card" style="width: 18rem;">                
                 <div class="card-body">
-                    <h5 class="card-title">Booking</h5>
-                    <p>Executive Suite</p>
-                    <p>$6000</p>
-                    <h3>From</h3>
-                    <p>01 MAR 2023</p>
-                    <h3>To</h3>
-                    <p>30 SEP 2023</p>
-                                           
-                    <a href="/user/booking" class="btn btn-primary">Edit</a>
-                    <a href="/user/booking" class="btn btn-danger">Delete</a>
-                                       
+                    <h5 class="card-title">New Booking</h5>
+                    <p class="card-text" th:text=" 'Id: '+ ${user.id}" />
+                    <p class="card-text" th:text=" 'Name: '+ ${user.name}" />
+                    <p class="card-text" th:text=" 'Address: '+ ${user.address}" />
+                    <p class="card-text" th:text=" 'Email: '+ ${user.email}" />
+                    <p class="card-text" th:text=" 'Room Number: '+ ${user.roomNumber}" />
+                    <p class="card-text" th:text="'Availability: '+${user.availability}" />
+                    <p class="card-text" th:text="'Check In Date: '+${user.checkIn}" />
+                    <p class="card-text" th:text="'Check Out Date: '+${user.checkOut}" />   
+                    <p class="card-text" th:text="'Room Type: '+${user.roomType}" /> 
+                    
+                    
+                    <a th:href="@{/user/update/id={id}(id=${user.id})}" class="btn btn-primary">Edit</a>
+                    <a th:href="@{/user/delete/id={id}(id=${user.id})}" class="btn btn-danger">Delete</a>
+                    
+                    
+                    
+                 
+               
+               
+                    
+                  
+                    
+                    
+                    
+                    
+                   
 
 
                 </div>

@@ -13,8 +13,8 @@
     </head>
     <body>
         <a href="/user/home" class="btn btn-primary">Home</a>
-        <a href="/user/rooms" class="btn btn-primary" >Book A Room</a>
-        <a href="/user/booking/new-booking" class="btn btn-primary">Update Booking</a>
+        <a href="/user/new-booking" class="btn btn-primary" >Book A Room</a>
+        <a href="/user/update-booking" class="btn btn-primary">Update Booking</a>
         <div class="container">
 
             <h1 style="text-align:center;" >Booked Stays</h1>
@@ -24,58 +24,38 @@
                 <table class="table table-hover">
                     <thead>
                         <tr class="table-primary">
-                            <th>Room Number</th>
-                            <th>Room Type</th>
-                            <th>Floor</th>
-                            <th>Price</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
+                            <th>Id</th>
+                            <th>name</th>
+                            <th>address</th>
+                            <th>email</th>
+                            <th>roomNumber</th>
+                            <th>availability</th>
+                            <th>Check-In Date</th>
+                            <th>Check-Out Date</th>
+                            <th>roomType</th>
                         </tr>
                         
-                        <tr>
-                            <td><a href="/user/booking/details" class="btn btn-primary">301</a></td>
-                            <td>Efficiency Apartment</td>
-                            <td>3</td>
-                            <td>$3000</td>
-                            <td>23 MAR 2022</td>
-                            <td>23 MAR 2023</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/user/booking/details" class="btn btn-primary">201</a></td>
-                            <td>Standard Double Room</td>
-                            <td>2</td>
-                            <td>$1500</td>
-                            <td>01 APR 2023</td>
-                            <td>30 APR 2023</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/user/booking/details" class="btn btn-primary">204</a></td>
-                            <td>Single Room</td>
-                            <td>2</td>
-                            <td>$1200</td>
-                            <td>01 MAY 2023</td>
-                            <td>30 NOV 2023</td>
-                         </tr>
-                         <tr>
-                            <td><a href="/user/booking/details" class="btn btn-primary">402</a></td>
-                            <td>Double Room</td>
-                            <td>4</td>
-                            <td>$4000</td>
-                            <td>15 JUN 2023</td>
-                            <td>31 DEC 2023</td>
-                         </tr>
-                         <tr>
-                            <td><a href="/user/booking/details" class="btn btn-primary">503</a></td>
-                            <td>Executive Suite</td>
-                            <td>5</td>
-                            <td>$6000</td>
-                            <td>01 MAR 2023</td>
-                            <td>30 SEP 2023</td>
-                         </tr>
+                       
                         
                     </thead>
                   
-                    
+                    <tbody>
+                        <tr th:each="user: ${bookings}">
+                          
+                            <td><a th:href="@{booking/id={id}(id=${user.id})}" th:text=" ${user.id}" > </a></td> 
+                       
+                            <td th:text=" ${user.name}"></td>
+                            <td th:text=" ${user.address}"></td>
+                            <td th:text=" ${user.email}"></td>
+                            <td th:text=" ${user.roomNumber}"></td>
+                            <td th:text=" ${user.availability}"></td>
+                            <td th:text=" ${user.checkIn}"></td>
+                            <td th:text=" ${user.checkOut}"></td>
+                            <td th:text=" ${user.roomType}"></td>
+
+                        </tr>
+
+                    </tbody>
                 </table>
             </div>
 
