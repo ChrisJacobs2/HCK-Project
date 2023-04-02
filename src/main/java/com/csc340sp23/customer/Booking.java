@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 
 
 /**
@@ -19,6 +20,21 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Bookings")
 public class Booking {
+    public Booking(){
+    }
+
+    public Booking(Long id, String name, String address, String email, String roomNumber, boolean availability, LocalDate checkInDate, LocalDate checkOutDate, String roomType) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.roomNumber = roomNumber;
+        this.availability = availability;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.roomType = roomType;
+    }
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,15 +51,57 @@ public class Booking {
     @Column(name = "email", nullable = false)
     
     private String email;
-    
+  
     @Column(name = "room_number", nullable = false)
 
     private String roomNumber;
     @Column(name = "availability", nullable = false)
 
     private boolean availability;
+    
+    
+    @Column(name = "check_in_date")
+    private LocalDate checkInDate;
+    
+    @Column(name = "check_out_date")
+    private LocalDate checkOutDate;
+    
+    
+    
+    
+    @Column(name = "room_type")
+    private String roomType;
 
-    public String getRoomNumber() {
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+
+    public LocalDate getCheckInDate() {
+        return checkInDate;
+    }
+
+    public void setCheckInDate(LocalDate checkInDate) {
+        this.checkInDate = checkInDate;
+    }
+
+    public LocalDate getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public void setCheckOutDate(LocalDate checkOutDate) {
+        this.checkOutDate = checkOutDate;
+    }
+
+  
+    
+    
+
+    public  String getRoomNumber() {
         return roomNumber;
     }
 

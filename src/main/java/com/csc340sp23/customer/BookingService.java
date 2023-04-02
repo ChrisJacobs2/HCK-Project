@@ -14,21 +14,10 @@ public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
 
-    public List<Booking> getAllBookings(Booking booking) {
+    public List<Booking> getAllBookings() {
         return bookingRepository.findAll();
     }
-    public List<Booking> getAvailableRooms(){
-    return bookingRepository.findByAvailabilityTrue();
-    }
-    public Booking getRoomByNumber(String roomNumber){
-    return bookingRepository.findByRoomNumber(roomNumber);
-    }
     
-    public void bookRoom(Booking booking){
-    booking.setAvailability(false);
-    bookingRepository.save(booking);
-    }
-
     public Booking getBookingById(Long id) {
 
         return bookingRepository.getReferenceById(id);
