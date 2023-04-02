@@ -28,26 +28,28 @@ public class CustomerController {
     
     @GetMapping("/booking")
     public String getBookingList(Model model) {
-        model.addAttribute("user", bookingService.getAllBookings());
+        model.addAttribute("bookingList", bookingService.getAllBookings());
+        
         return "customer/booking/booking-list";
     }
     
     @GetMapping("/id={id}")
     public String getBookingById(@PathVariable long id, Model model) {
-        model.addAttribute("user", bookingService.getBookingById(id));
-        return "customer/booking-detail";
+        model.addAttribute("booking", bookingService.getBookingById(id));
+        return "customer/booking/booking-detail";
     }
     
+    
     @GetMapping("/delete/id={id}")
-    public String deleteBooking(@PathVariable long bookId, Model model) {
-        bookingService.deleteBooking(bookId);
+    public String deleteBooking(@PathVariable long id, Model model) {
+        bookingService.deleteBooking(id);
         return "redirect:/user/booking";
     }
     @PostMapping("/create")
     public String createBooking(Booking booking) {
 
         bookingService.saveBooking(booking);
-        return "redirect:/user/booking";
+        return "redirect:/user/home";
     }
     
     @PostMapping("/update")
@@ -63,8 +65,8 @@ public class CustomerController {
     
     @GetMapping("/update/id={id}")
     public String updateBookingForm(@PathVariable long id, Model model) {
-        model.addAttribute("user", bookingService.getBookingById(id));
-        return "redirect:/user/booking";
+        model.addAttribute("booking", bookingService.getBookingById(id));
+        return "customer/booking/update-booking";
     }
    
     

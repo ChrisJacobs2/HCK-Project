@@ -40,18 +40,18 @@
                     </thead>
                   
                     <tbody>
-                        <tr th:each="user: ${bookings}">
+                        <tr th:each="booking: ${bookingList}">
                           
-                            <td><a th:href="@{booking/id={id}(id=${user.id})}" th:text=" ${user.id}" > </a></td> 
+                            <td><a th:href="@{/user/id={id}(id=${booking.id})}" th:text="${booking.id}" > </a></td> 
                        
-                            <td th:text=" ${user.name}"></td>
-                            <td th:text=" ${user.address}"></td>
-                            <td th:text=" ${user.email}"></td>
-                            <td th:text=" ${user.roomNumber}"></td>
-                            <td th:text=" ${user.availability}"></td>
-                            <td th:text=" ${user.checkIn}"></td>
-                            <td th:text=" ${user.checkOut}"></td>
-                            <td th:text=" ${user.roomType}"></td>
+                            <td th:text=" ${booking.name}"></td>
+                            <td th:text=" ${booking.address}"></td>
+                            <td th:text=" ${booking.email}"></td>
+                            <td th:text=" ${booking.roomNumber}"></td>
+                            <td th:text=" ${booking.availability}"></td>
+                            <td th:text=" ${booking.checkInDate}"></td>
+                            <td th:text=" ${booking.checkOutDate}"></td>
+                            <td th:text=" ${booking.roomType}"></td>
 
                         </tr>
 
