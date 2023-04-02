@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
- * @author Christopher Jacobs
+ * @author Hilda Ramirez
  */
 @Controller
 @RequestMapping("/user")
@@ -45,6 +45,16 @@ public class CustomerController {
         bookingService.deleteBooking(id);
         return "redirect:/user/booking";
     }
+    
+    /**
+     *this will be the new booking form page 
+     *  @GetMapping("/new-booking")
+    public String newbookingForm(Model model) {
+        return "customer/booking/new-booking";
+    }
+     * 
+     */
+    
     @PostMapping("/create")
     public String createBooking(Booking booking) {
 
@@ -68,18 +78,6 @@ public class CustomerController {
         model.addAttribute("booking", bookingService.getBookingById(id));
         return "customer/booking/update-booking";
     }
-   
-    
-   
-    
-    
-    
-    
-    
-    //@GetMapping("booking/details")
-    //public String bookingDetails() {
-      //  return "customer/booking/booking-detail";
-    //}
     
     @GetMapping("/complaints")
     public String getHelp() {

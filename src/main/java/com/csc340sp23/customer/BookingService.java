@@ -18,6 +18,7 @@ public class BookingService {
         return bookingRepository.findAll();
     }
     
+    
     public Booking getBookingById(Long id) {
 
         return bookingRepository.getReferenceById(id);
