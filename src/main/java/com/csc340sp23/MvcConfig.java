@@ -9,6 +9,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author Anonymous
  * I found this code online. The purpose of this class is to configure the 
  * springboot server so that it serves content in src/main/resources/static
+ * 
+ * I am considering removing this class as I can just host the images online. -- Chris Jacobs
  */
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
