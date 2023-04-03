@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CustomerController {
 
     @Autowired
-    private BookingService bookingService;
+    private BookingService bookingService;  // BTW, you can have more than one service here -- Christopher
+    
  
     @GetMapping("/home")
     public String getHome() {
