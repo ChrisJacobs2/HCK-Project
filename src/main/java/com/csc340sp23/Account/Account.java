@@ -1,6 +1,6 @@
 package com.csc340sp23.Account;
 
-import com.csc340sp23.customer.Booking;
+//import com.csc340sp23.customer.Booking;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,8 +22,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Account {
-    
+public class Account {  // TODO: eatablish a one-to-many relationship between
+                        // Account and Booking such that an account can have
+                        // multiple bookings.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -34,7 +35,7 @@ public class Account {
     private String lastName;
     private String roles;
     private String email;
-    private Booking currentBooking;
+//    private Booking currentBooking;
     
     public Account (String username, String password, 
                     String firstName, String lastName, 
@@ -46,6 +47,6 @@ public class Account {
         this.roles = roles;
         this.email = email;
         roomNumber = -1;
-        currentBooking = null;
+//        currentBooking = null;
     }
 }
