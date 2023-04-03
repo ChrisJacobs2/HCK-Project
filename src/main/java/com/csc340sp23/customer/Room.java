@@ -33,7 +33,15 @@ public class Room {
 
     @Column(name = "Room Type", nullable = false)
 
-    private String description;
+    private String roomType;
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
     @Column(name = "Check-In-Date", nullable = false)
 
     private Date checkInDate;
@@ -41,6 +49,7 @@ public class Room {
     @Column(name = "Check-Out-Date", nullable = false)
 
     private Date checkOutDate;
+
     @Column(name = "Booked", nullable = false)
 
     private boolean booked;
@@ -52,16 +61,15 @@ public class Room {
     public void setBooked(boolean booked) {
         this.booked = booked;
     }
-    
 
     Room() {
     }
 
-    public Room(Long roomId, int roomNumber, String name, String description, Date checkInDate, Date checkOutDate) {
+    public Room(Long roomId, int roomNumber, String name, String roomType, Date checkInDate, Date checkOutDate) {
         this.roomId = roomId;
         this.roomNumber = roomNumber;
         this.name = name;
-        this.description = description;
+        this.roomType = roomType;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
     }
@@ -88,14 +96,6 @@ public class Room {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Date getCheckInDate() {

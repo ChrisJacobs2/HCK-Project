@@ -34,7 +34,7 @@ public class RoomController{
     public String getAllRooms(Model model){
     List<Room> rooms = roomService.getAllRooms();
     model.addAttribute("rooms", rooms);
-    return "rooms/index";
+    return "customer/rooms/reservation-list";
     
     }
     
@@ -42,14 +42,14 @@ public class RoomController{
     public String getRoomById(@PathVariable Long roomId, Model model){
     Room room = roomService.getRoomById(roomId);
     model.addAttribute("room", room);
-    return "rooms/show";
+    return "customer/rooms/show";
     
     }
     @GetMapping("/new")
     public String createRoomForm(Model model){
     Room room = new Room();
     model.addAttribute("room", room);
-    return "rooms/new";
+    return "customer/rooms/new";
     }
     @PostMapping("/create")
     public String createRoom(@ModelAttribute("room")Room room){
@@ -69,10 +69,13 @@ public class RoomController{
     
     @PostMapping("/rooms/{roomId}/booked")
     @ResponseBody
-    //public boolean updateBookedStatus(@PathVariable Long)
+    public boolean updateBookedStatus(@PathVariable Long roomId){
+    Room room = roomService.getRoomById(roomId);
+    return room.isBooked();
+    }
     
     
-    //@GetMapping("/{id}/edit")
+    @GetMapping("/{roomId}/edit")
     public String updateRoomForm(@PathVariable Long roomId, Model model){
     Room room = roomService.getRoomById(roomId);
     model.addAttribute("room",room);
@@ -80,14 +83,14 @@ public class RoomController{
     }
  
     
-    @PutMapping("/{id}")
+    @PutMapping("/{roomId}")
     public String updateRoom(@PathVariable Long roomId,@ModelAttribute("room")Room room){
     room.setRoomId(roomId);
     roomService.updateRoom(room);
     return "redirect:/rooms";
     }
     
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{roomId}")
     public String deleteRoom(@PathVariable Long roomId){
     roomService.deleteRoom(roomId);
     return "redirect:/rooms";

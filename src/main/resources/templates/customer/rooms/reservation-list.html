@@ -13,27 +13,38 @@
 
     </head>
 <body>
-    <h1>Rooms</h1>
-    <table>
+   <div class="container">
+    <h1 style="text-align:center;" >Rooms</h1>
+    <a href="/rooms/new" class="btn btn-primary"> Create Room</a>
+    <table class="table"> 
         <thead>
-            <tr>
-                <th>ID</th>
+
+            <tr class="table table-bordered border-primary">
+                <th>Room ID</th>
+                <th>Room Number</th>
+                <th>Room Type</th>
                 <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
+                <th>Check In Date</th>
+                <th>Check Out Date</th>
                 <th>Booked</th>
             </tr>
         </thead>
         <tbody>
+            
             <tr th:each="room : ${rooms}">
                 <td th:text="${room.roomId}"></td>
+                <td th:text="${room.roomNumber}"></td>
+                <td th:text="${room.roomType}"></td>
                 <td th:text="${room.name}"></td>
-                <td th:text="${room.description}"></td>
-                <td th:text="${room.price}"></td>
+                <td th:text="${room.checkInDate}"></td>
+                <td th:text="${room.checkOutDate}"></td>
                 <td th:text="${room.booked}"></td>
             </tr>
         </tbody>
     </table>
-    <a href="/rooms/new">Create Room</a>
+    
+    
+    
+   </div>
 </body>
 </html>
