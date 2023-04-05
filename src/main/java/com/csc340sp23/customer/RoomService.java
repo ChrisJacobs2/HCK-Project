@@ -1,5 +1,6 @@
 package com.csc340sp23.customer;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -52,15 +53,8 @@ public class RoomService extends Booking {
     
     
 
-  /*
-    public boolean isAvailable(Date checkInDate, Date checkOutDate, List<Booking> bookings) {
-        for (Booking booking : bookings) {
-            if (checkInDate.before(booking.getCheckOutDate()) && checkOutDate.after(booking.getCheckInDate())) {
-                return false; // Room is already booked during this period
-            }
-        }
-        return true; // Room is available during this period
-    }*/
+  
+  
 
    
 

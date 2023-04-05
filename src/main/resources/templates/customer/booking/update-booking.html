@@ -40,7 +40,7 @@
                                         <td>Email:</td>
                                         <td><input type="email" th:field="*{email}" value="${booking.email}"/></td>
                                     </tr>
-                                    
+
                                     <tr>
                                         <td>Room Number:</td>
                                         <td><input type="text" th:field="*{roomNumber}" value="${booking.roomNumber}" readonly/></td>
@@ -48,6 +48,7 @@
                                     <tr>
                                         <td>Room Selection:</td>
                                         <td><input type="text" th:field="*{roomType}" value="${booking.roomType}"/></td>
+                                        
                                     </tr>
                                     <tr>
                                         <td>Check-In-Date:</td>
@@ -57,11 +58,12 @@
                                         <td>Check-Out-Date:</td>
                                         <td><input type="date" th:field="*{checkOutDate}" value="${booking.checkOutDate}"/></td>
                                     </tr>
-                                   
+
                                     <tr>
                                         <td colspan="2"><button type="submit">Save Booking </button> </td>
                                     </tr>
-
+                                  
+                                    </div>
                                 </table>
                             </form>
 
@@ -73,7 +75,7 @@
                 </div>
             </div>
 
-
+        </div>
 
     </body>
 </html>
