@@ -1,3 +1,4 @@
+/*
 package com.csc340sp23.customer;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Hilda
  */
+/*
 @Service
 public class RoomService extends Booking {
 
@@ -52,10 +54,10 @@ public class RoomService extends Booking {
     }
     
     
-
+*/
   
   
 
    
 
-}
+//}
