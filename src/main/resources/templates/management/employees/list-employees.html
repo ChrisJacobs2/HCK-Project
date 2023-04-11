@@ -15,52 +15,36 @@
         <a href="/admin/home" class="btn btn-primary">Home</a>
         <div class="container">
 
-            <h1 style="text-align:center;">Employee Task List</h1>
+            <h1 style="text-align:center;">HCK Employees</h1>
 
             <div style="align-content: center;">
+                <p class="my-5">
+                    <a href="/admin/employees/new-employee" class="btn btn-primary">Hire Employee</a>
+                </p>
                 
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
+                            <th>Last</th>
+                            <th>First</th>
                             <th>Position</th>
+                            <th>Salary</th>
+                            <th>Busy?</th>
+                            <th>Tasks Completed</th>
                             <th>Date Employed</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><a href="/admin/employees/id" th:text="123092" > </a> </td>
-                            <td>Jerry</td>
-                            <td>Jenkins</td>
-                            <td>Janitor</td>
-                            <td>1 JUN 2018</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/employees/id" th:text="298921" > </a> </td>
-                            <td>George</td>
-                            <td>Parsons</td>
-                            <td>Security Guard</td>
-                            <td>25 AUG 2018</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/employees/id" th:text="548920" > </a> </td>
-                            <td>Garry</td>
-                            <td>Newman</td>
-                            <td>Janitor</td>
-                            <td>01 OCT 2018</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/employees/id" th:text="954372" > </a> </td>
-                            <td>Carter</td>
-                            <td>Jones</td>
-                            <td>Plumber</td>
-                            <td>15 FEB 2019</td>
-                        </tr>
-                        
-                        
-                        
+                        <tr th:each="employee : ${employeeList}">
+                            <td> <a th:href="@{/employee/id={id}(id=${employee.id})}" th:text=" ${employee.id}" > </a></td>                           
+                            <td th:text=" ${employee.lastFirst}"></td>
+                            <td th:text=" ${employee.position}"></td>
+                            <td th:text=" ${employee.salary}"></td>
+                            <td th:text=" ${employee.position}"></td>
+                            <td th:text=" ${employee.position}"></td>
+                            <td th:text=" ${employee.position}"></td>
+                        </tr>                        
 
                     </tbody>
                 </table>

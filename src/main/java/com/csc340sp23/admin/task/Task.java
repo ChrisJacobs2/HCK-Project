@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
  */
 @AllArgsConstructor
 @Entity
-@Table(name = "employee")
+@Table(name = "task")
 @NoArgsConstructor
 @Getter
 @Setter
