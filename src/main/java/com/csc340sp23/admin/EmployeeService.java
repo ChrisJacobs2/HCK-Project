@@ -1,4 +1,4 @@
-package com.csc340sp23.admin.employees;
+package com.csc340sp23.admin;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class EmployeeService {
     }
 
     void saveEmployee(Employee employee) {
-
+        
         repo.save(employee);
     }
 }

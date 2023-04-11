@@ -2,6 +2,7 @@ package com.csc340sp23.Account;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -24,8 +25,9 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
 //                .requestMatchers("/", "/home").permitAll()
                 .requestMatchers("/**").permitAll()
-                .requestMatchers("/admin/**").hasAnyRole("ADMIN")
-                .requestMatchers("/mod/**").hasAnyRole("MOD", "ADMIN")
+                .requestMatchers(HttpMethod.POST, "/**").permitAll()
+//                .requestMatchers("/admin/**").hasAnyRole("ADMIN")
+//                .requestMatchers("/mod/**").hasAnyRole("MOD", "ADMIN")
                 .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
@@ -33,7 +35,7 @@ public class WebSecurityConfig {
                 .permitAll()
                 ).exceptionHandling((x) -> x.accessDeniedPage("/403"))
                 .logout((logout) -> logout.permitAll());
-
+        http.csrf().disable();
         return http.build();
     }
 
