@@ -12,6 +12,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 
+import lombok.Getter;
+
+import lombok.Setter;
+
 
 
 /**
@@ -19,6 +23,10 @@ import java.time.LocalDate;
  * @author Hilda
  */
 @Entity
+@Getter
+@Setter
+
+
 @Table(name = "Bookings")
 public class Booking {
     public Booking(){
@@ -45,15 +53,15 @@ public class Booking {
     @Column(name = "Name", nullable = false)
     private String name;
     
-    @Column(name = "address", nullable = false)
+    @Column(name = "Address", nullable = false)
     
     private String address;
      
-    @Column(name = "email", nullable = false)
+    @Column(name = "Email", nullable = false)
     
     private String email;
   
-    @Column(name = "room_number", nullable = false)
+    @Column(name = "roomNumber", nullable = false)
 
     private String roomNumber;
     @Column(name = "isAvaiable", nullable = false)
@@ -61,17 +69,20 @@ public class Booking {
     private boolean isAvailable;
     
     
-    @Column(name = "check_in_date")
+    @Column(name = "checkInDate")
     private LocalDate checkInDate;
     
-    @Column(name = "check_out_date")
+    @Column(name = "checkOutDate")
     private LocalDate checkOutDate;
     
-    
-    
-    
-    @Column(name = "room_type")
+    @Column(name = "roomType")
     private String roomType;
+    
+    
+    
+    
+    
+    
 
     public String getRoomType() {
         return roomType;

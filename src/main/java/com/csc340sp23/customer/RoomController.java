@@ -2,6 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
+/*
 package com.csc340sp23.customer;
 
 import java.time.LocalDate;
@@ -26,7 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  * @author Hilda
  */
-
+/*
 @Controller
 @RequestMapping("/rooms")
 public class RoomController{
@@ -58,15 +60,16 @@ public class RoomController{
     model.addAttribute("room", room);
     return "/rooms/new";
     }
+    /*
     @PostMapping("/create")
     public String createRoom(@ModelAttribute("room")Room room){
     roomService.addRoom(room);
     return "redirect:/rooms";
-    }
+    }*/
     
     
     
-    
+    /*
     @GetMapping("/rooms/{id}/booked")
     @ResponseBody
     public boolean isBooked(@PathVariable Long roomId){
@@ -105,6 +108,6 @@ public class RoomController{
     
     
     
+    */
     
-    
-}
+//}
