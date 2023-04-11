@@ -2,8 +2,14 @@ package com.csc340sp23.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 
 /**
  *
@@ -14,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 
     @Autowired
+    EmployeeService employeeService;
+    
     @GetMapping("/home")
     public String getHome() {
         return "management/home";
@@ -63,6 +71,19 @@ public class AdminController {
     public String getEmployeeTasks() {
         return "management/employees/new-message";
     }
+    
+    @GetMapping("/employees/new-employee")
+    public String newEmployeeForm(Model model) {
+        return "management/employees/new-employee";
+    }
+    
+    @PostMapping("/employees/create")
+    public String createEmpoyee(Employee employee) {
+
+        employeeService.saveEmployee(employee);
+        return "redirect:/admin/employees";
+    }
+    
 }
 
 
