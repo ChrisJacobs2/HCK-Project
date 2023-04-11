@@ -1,5 +1,6 @@
 package com.csc340sp23.customer;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,16 @@ public class BookingService {
 
         bookingRepository.deleteById(id);
     }
+   
+  
+   public boolean isAvailable(LocalDate checkInDate, LocalDate checkOutDate, List<Booking> bookings) {
+    for (Booking booking : bookings) {
+        if (checkInDate.isBefore(booking.getCheckOutDate()) && checkOutDate.isAfter(booking.getCheckInDate())) {
+            return false; // Room is already booked during this period
+        }
+    }
+    return true; // Room is available during this period
+}
 
+ 
 }

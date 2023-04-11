@@ -10,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -44,11 +44,11 @@ public class Room {
     }
     @Column(name = "Check-In-Date", nullable = false)
 
-    private Date checkInDate;
+    private LocalDate checkInDate;
 
     @Column(name = "Check-Out-Date", nullable = false)
 
-    private Date checkOutDate;
+    private LocalDate checkOutDate;
 
     @Column(name = "Booked", nullable = false)
 
@@ -65,7 +65,7 @@ public class Room {
     Room() {
     }
 
-    public Room(Long roomId, int roomNumber, String name, String roomType, Date checkInDate, Date checkOutDate) {
+    public Room(Long roomId, int roomNumber, String name, String roomType, LocalDate checkInDate, LocalDate checkOutDate) {
         this.roomId = roomId;
         this.roomNumber = roomNumber;
         this.name = name;
@@ -98,19 +98,19 @@ public class Room {
         this.name = name;
     }
 
-    public Date getCheckInDate() {
+    public LocalDate getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(Date checkInDate) {
+    public void setCheckInDate(LocalDate checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public Date getCheckOutDate() {
+    public LocalDate getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(Date checkOutDate) {
+    public void setCheckOutDate(LocalDate checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 

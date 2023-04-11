@@ -11,7 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
-import java.util.Date;
+
 
 
 /**
@@ -24,13 +24,13 @@ public class Booking {
     public Booking(){
     }
 
-    public Booking(Long id, String name, String address, String email, String roomNumber, boolean availability, LocalDate checkInDate, LocalDate checkOutDate, String roomType) {
+    public Booking(Long id, String name, String address, String email, String roomNumber, boolean isAvailable, LocalDate checkInDate, LocalDate checkOutDate, String roomType) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.email = email;
         this.roomNumber = roomNumber;
-        this.availability = availability;
+        this.isAvailable = isAvailable;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.roomType = roomType;
@@ -56,9 +56,9 @@ public class Booking {
     @Column(name = "room_number", nullable = false)
 
     private String roomNumber;
-    @Column(name = "availability", nullable = false)
+    @Column(name = "isAvaiable", nullable = false)
 
-    private boolean availability;
+    private boolean isAvailable;
     
     
     @Column(name = "check_in_date")
@@ -110,12 +110,12 @@ public class Booking {
         this.roomNumber = roomNumber;
     }
 
-    public boolean isAvailability() {
-        return availability;
+    public boolean getIsAvailable() {
+        return isAvailable;
     }
 
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
 
     public Long getId() {
