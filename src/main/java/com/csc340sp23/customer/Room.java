@@ -4,13 +4,16 @@
  */
 package com.csc340sp23.customer;
 
+import com.csc340sp23.customer.helpdesk.HelpDesk;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -34,14 +37,7 @@ public class Room {
     @Column(name = "Room Type", nullable = false)
 
     private String roomType;
-
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
+    
     @Column(name = "Check-In-Date", nullable = false)
 
     private LocalDate checkInDate;
@@ -53,14 +49,11 @@ public class Room {
     @Column(name = "Booked", nullable = false)
 
     private boolean booked;
+    
+    //@OneToMany(mappedBy = "room")
+    //private List<HelpDesk> messages;
 
-    public boolean isBooked() {
-        return booked;
-    }
-
-    public void setBooked(boolean booked) {
-        this.booked = booked;
-    }
+  
 
     Room() {
     }
@@ -72,6 +65,13 @@ public class Room {
         this.roomType = roomType;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
+    }
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
     public Long getRoomId() {
@@ -112,6 +112,13 @@ public class Room {
 
     public void setCheckOutDate(LocalDate checkOutDate) {
         this.checkOutDate = checkOutDate;
+    }
+    public boolean isBooked() {
+        return booked;
+    }
+
+    public void setBooked(boolean booked) {
+        this.booked = booked;
     }
 
 }
