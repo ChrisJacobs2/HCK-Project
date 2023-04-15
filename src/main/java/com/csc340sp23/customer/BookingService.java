@@ -2,6 +2,7 @@ package com.csc340sp23.customer;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +28,21 @@ public class BookingService {
     }
 
     public void saveBooking(Booking booking) {
+        String roomNumber = generateRandomRoomNumber();
+        booking.setRoomNumber(roomNumber);
         bookingRepository.save(booking);
     }
 
     public void deleteBooking(Long id) {
 
         bookingRepository.deleteById(id);
+    }
+
+    private String generateRandomRoomNumber() {
+        // generate a random 3-digit room number
+        Random rand = new Random();
+        int roomNum = rand.nextInt(400) + 100;
+        return "R" + roomNum;
     }
    
  

@@ -9,8 +9,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Random;
 
 import lombok.Getter;
 
@@ -78,6 +81,9 @@ public class Booking {
     @Column(name = "roomType")
     private String roomType;
     
+    @OneToMany(mappedBy = "roomNumber")
+    private List<Booking> bookings;
+    
     
     
     
@@ -120,7 +126,7 @@ public class Booking {
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
-
+   
     public boolean getIsAvailable() {
         return isAvailable;
     }
