@@ -78,6 +78,7 @@ public class Booking {
     @Column(name = "checkOutDate")
     private LocalDate checkOutDate;
     
+    //@NotNull(message = "Room type is required")
     @Column(name = "roomType")
     private String roomType;
     

@@ -2,6 +2,8 @@ package com.csc340sp23.customer;
 
 import com.csc340sp23.customer.helpdesk.HelpDesk;
 import com.csc340sp23.customer.helpdesk.HelpDeskService;
+import com.csc340sp23.customer.roomServiceRequest.RoomServiceRequest;
+import com.csc340sp23.customer.roomServiceRequest.RoomServiceRequestService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,8 @@ public class CustomerController {
     private BookingService bookingService;  // BTW, you can have more than one service here -- Christopher
     @Autowired
     private HelpDeskService helpDeskService;
+    @Autowired
+    private RoomServiceRequestService roomServiceRequestService;
 
     @GetMapping("/home")
     public String getHome() {
@@ -48,7 +52,8 @@ public class CustomerController {
         bookingService.deleteBooking(id);
         return "redirect:/user/booking";
     }
- // updated this
+    // updated this
+
     @PostMapping("/create")
     public String createBooking(Booking booking) {
         bookingService.saveBooking(booking);
@@ -69,15 +74,18 @@ public class CustomerController {
     public String newbookingForm(Model model) {
         return "customer/booking/new-booking";
     }
+    // added List<String>.. and model.AddAttri(roomtypes)..
 
     @GetMapping("/update/id={id}")
     public String updateBookingForm(@PathVariable long id, Model model) {
         model.addAttribute("booking", bookingService.getBookingById(id));
+        //List<String> roomTypes = bookingService.getAllRoomTypes();
+        //model.addAttribute("roomTypes", roomTypes);
+
         return "customer/booking/update-booking";
     }
 // Mappings for Complaints start here
- 
-    
+
     // user/complaints
     @GetMapping("/complaints")
     public String getHelp(Model model) {
@@ -85,18 +93,16 @@ public class CustomerController {
         model.addAttribute("messages", messages);
         return "customer/complaints/complaint-list";
     }
-    
-    // following /new-booking was "/complaints/new"
 
+    // following /new-booking was "/complaints/new"
     @GetMapping("/new-message")
     public String newHelpDeskForm(Model model) {
         //HelpDesk message = new HelpDesk();
         //model.addAttribute("message", message);
         return "customer/complaints/new-message";
     }
-    
-    
-     // following create booking
+
+    // following create booking
     //was had @ModelAttribute("message")
     @PostMapping("/createcomplaint")
     public String createHelpDesk(HelpDesk message) {
@@ -104,6 +110,7 @@ public class CustomerController {
         return "redirect:/user/complaints";
 
     }
+
     // update complaint
     // was @ModelAttribute("message")
     @PostMapping("/updatecomplaint")
@@ -112,6 +119,7 @@ public class CustomerController {
         return "redirect:/user/complaints";
 
     }
+
     // following /id = {id}
     // worked with no '/'..? on complaints also no '/' on the link to in the complaint-list html file
     //also added /user to links for edit and delete parts on their html files parts
@@ -121,8 +129,8 @@ public class CustomerController {
         model.addAttribute("message", message);
         return "customer/complaints/message-detail";
     }
-     // follows /update/id
-   
+    // follows /update/id
+
     @GetMapping("/updatecomplaint/complaints/messageId={messageId}")
     public String editHelpDeskForm(@PathVariable long messageId, Model model) {
         HelpDesk message = helpDeskService.getMessageById(messageId);
@@ -130,27 +138,79 @@ public class CustomerController {
         return "customer/complaints/edit-message";
 
     }
-     
-   
-    
-    @GetMapping("/deletecomplaint/complaints/messageId={messageId}")
-    public String deleteHelpDesk(@PathVariable long messageId){
-    helpDeskService.deleteMessageById(messageId);
-    return "redirect:/user/complaints";
-    
-    }
 
-    @GetMapping("/room-service")
-    public String getRoomService() {
-        return "customer/room-service/service-list";
+    @GetMapping("/deletecomplaint/complaints/messageId={messageId}")
+    public String deleteHelpDesk(@PathVariable long messageId) {
+        helpDeskService.deleteMessageById(messageId);
+        return "redirect:/user/complaints";
+
     }
 
     private String generatedRandomRoomNumber() {
-       return "/user/create";
+        return "/user/create";
+    }
+    //@ModelAttribute("roomTypes")
+    //public List<String> populateRoomTypes() {
+    // Get all possible room types from the database and return them as a list
+    //  List<String> roomTypes = bookingService.getAllRoomTypes();
+    //  return roomTypes;
+    //}
+
+    // this starts room service mappings
+    // user/room-serivce
+    @GetMapping("/room-service")
+    public String getAllRoomServiceRequests(Model model) {
+        List<RoomServiceRequest> roomServiceRequests = roomServiceRequestService.getAllRoomServiceRequests();
+        model.addAttribute("roomServiceRequests", roomServiceRequests);
+        return "customer/room-service/service-list";
     }
 
-   
+    @GetMapping("/new-request")
+    public String newRequestForm(Model model) {
+        //HelpDesk message = new HelpDesk();
+        //model.addAttribute("message", message);
+        return "customer/room-service/new-request";
+    }
 
-   
+    // added booking line request set roomnumber line
+    @PostMapping("/createrequest")
+    public String createRequest(RoomServiceRequest request) {
+       // Booking booking = bookingService.getBookingById(request.getId());
+
+       // request.setRoomNumber(booking.getRoomNumber());
+
+        roomServiceRequestService.saveRoomServiceRequest(request);
+        return "redirect:/user/room-service";
+
+    }
+
+    @PostMapping("/updaterequest")
+    public String updateRoomServiceRequest(RoomServiceRequest request) {
+        roomServiceRequestService.saveRoomServiceRequest(request);
+        return "redirect:/user/room-service";
+
+    }
+
+    @GetMapping("room-service/requestId={id}")
+    public String getRoomServiceRequestById(@PathVariable long id, Model model) {
+        RoomServiceRequest roomServiceRequest = roomServiceRequestService.getRoomServiceRequestById(id);
+        model.addAttribute("roomServiceRequest", roomServiceRequest);
+        return "customer/room-service/request-detail";
+    }
+
+    @GetMapping("/updaterequest/room-service/requestId={id}")
+    public String editRequestForm(@PathVariable long id, Model model) {
+        RoomServiceRequest roomServiceRequest = roomServiceRequestService.getRoomServiceRequestById(id);
+        model.addAttribute("roomServiceRequest", roomServiceRequest);
+        return "customer/room-service/edit-request";
+
+    }
+
+    @GetMapping("/deleterequest/room-service/requestId={id}")
+    public String deleteRoomServiceRequest(@PathVariable long id) {
+        roomServiceRequestService.deleteRoomServiceRequest(id);
+        return "redirect:/user/room-service";
+
+    }
 
 }

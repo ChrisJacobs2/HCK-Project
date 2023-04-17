@@ -15,6 +15,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -43,13 +44,13 @@ public class HelpDesk{
    private String messageContent;
    
    @Column(name = "Message Date", nullable = false)
-   private LocalDate messageDate;
+   private LocalDateTime messageDate = LocalDateTime.now();
    
    public HelpDesk(){
    
    }
    
-   public HelpDesk(Long messageId,String name, String messageContent, LocalDate messageDate ){
+   public HelpDesk(Long messageId,String name, String messageContent, LocalDateTime messageDate ){
        this.messageId = messageId;
        this.name = name;
        this.messageContent = messageContent;
@@ -86,11 +87,11 @@ public class HelpDesk{
         this.messageContent = messageContent;
     }
 
-    public LocalDate getMessageDate() {
+    public LocalDateTime getMessageDate() {
         return messageDate;
     }
 
-    public void setMessageDate(LocalDate messageDate) {
+    public void setMessageDate(LocalDateTime messageDate) {
         this.messageDate = messageDate;
     }
    
