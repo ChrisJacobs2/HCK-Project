@@ -1,4 +1,4 @@
-package com.csc340sp23.admin;
+package com.csc340sp23.admin.employees;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

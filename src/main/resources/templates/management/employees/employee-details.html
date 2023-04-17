@@ -14,21 +14,52 @@
     </head>
     <body>
         <div class="container">
-            <h1 style="text-align:center;">Jenkins, Jerry</h1>
+            
+            <h1 style="text-align:center;" th:text="${employee.last + ', ' + employee.first}" />
+
             <div class="card" style="width: 18rem;">  
                 <img class="card-img-top" src="https://media.tenor.com/_02jugOehccAAAAM/wario-one-of-my-greatest-achievement.gif" alt="Card image cap"/>
                 <div class="card-body">
-                    <h5 class="card-title">Janitor</h5>
-                    <p > Tasks completed: 7/7 (100%) </p>  
+                    <h3 class="card-title" th:text="${employee.position}" />
                     
-                    <h3 > Tasks in Progress: </h3> 
-                    <h5>Replace toilet seat in room 115b</h5>
-                    <p>22 SEP 2021</p>
-                    <h5>Replace light bulb in hallway on the 3rd floor</h5>
-                    <p>15 MAR 2020</p>
+                    <p th:if="${employee.tasksTotal != 0}">Tasks completed: <span th:text="${employee.tasksSuccess} + '/' + ${employee.tasksTotal}"></span></p>
+                    
+                    <!--Check if the employee has tasks before displaying the latest task assigned--> 
+                    <th:block th:with="latestTask=${employee.tasks[#lists.size(employee.tasks) - 1]}">
+                        <h4>Latest task assigned:</h4>
+                        <h5 th:text="${latestTask.taskName}" />
+                        <h6 th:text="${latestTask.taskDesc}" />
+                        <p th:text="${#temporals.format(latestTask.taskStartTime, 'dd MMM yyyy')}" />
+                    </th:block>
+                    <th:block th:if="${#lists.isEmpty(employee.tasks)}">
+                        <p>No tasks assigned</p>
+                    </th:block>
+                    
+                    
+                    <!-- Check if the employee has tasks before displaying -->
+                    <th:block th:if="${not #lists.isEmpty(employee.tasks)}">
+                        <h4>Latest completed task:</h4>
+                        <!--Filter out incomplete tasks. Then checks if THAT resulting list is empty.-->
+                        <th:block th:if="${#lists.isEmpty(employee.tasks.?[taskCompleteStatus == true])}">
+                            <h5>No completed tasks found.</h5>
+                        </th:block>
+                        <!--If the filtered list isn't empty...-->
+                        <th:block th:if="${not #lists.isEmpty(employee.tasks.?[taskCompleteStatus == true])}">
+                            <!--expression to store the latest completed task in the completedTask variable-->
+                            <th:block th:with="completedTask=${employee.tasks.$[taskCompleteStatus == true]}">
+                                <h5 th:text="${completedTask.taskName}" />
+                                <h6 th:text="${completedTask.taskDesc}" />
+                                <p th:text="${#temporals.format(completedTask.taskStartTime, 'dd MMM yyyy')}" />
+                            </th:block>
+                        </th:block>
+                    </th:block>
+                    <th:block th:if="${#lists.isEmpty(employee.tasks)}">
+                        <h4>No tasks assigned.</h4>
+                    </th:block>
                                       
                     <a href="/admin/employees/id/message" class="btn btn-primary">Message</a>
-                    <a href="/admin/employees" class="btn btn-primary">Fire</a>
+                    <a th:href="@{/admin/employees/delete/id={id}(id=${employee.id})}" class="btn btn-primary">Fire</a>
+                    <a href="/admin/employees" class="btn btn-primary">Back</a>
                 </div>
             </div> 
             

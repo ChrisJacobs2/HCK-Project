@@ -11,8 +11,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-
-
+import jakarta.persistence.ManyToOne;
+import com.csc340sp23.admin.employees.Employee;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.JoinColumn;
 
 /**
  *
@@ -30,14 +32,24 @@ public class Task {
     private long id;
     private String taskName;
     private String taskDesc;
-    private LocalDateTime taskStartTime;
+    private LocalDateTime taskStartTime = LocalDateTime.now();
     private LocalDateTime taskEndTime;
     private boolean taskCompleteStatus;
     
-    public Task(String taskName, String taskDesc) {
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+    
+    public Task(String taskName, String taskDesc, Employee employee) {
         this.taskName = taskName;
         this.taskDesc = taskDesc;
-        this.taskStartTime = LocalDateTime.now();
+        this.employee = employee;
+    }
+    
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+        employee.addTask(this); 
+        employee.incrementTasksTotal(); 
     }
     
 }

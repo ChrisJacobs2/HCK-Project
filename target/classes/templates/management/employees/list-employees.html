@@ -25,7 +25,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>#</th>
                             <th>Last</th>
                             <th>First</th>
                             <th>Position</th>
@@ -37,13 +37,23 @@
                     </thead>
                     <tbody>
                         <tr th:each="employee : ${employeeList}">
-                            <td> <a th:href="@{/employee/id={id}(id=${employee.id})}" th:text=" ${employee.id}" > </a></td>                           
-                            <td th:text=" ${employee.lastFirst}"></td>
-                            <td th:text=" ${employee.position}"></td>
-                            <td th:text=" ${employee.salary}"></td>
-                            <td th:text=" ${employee.position}"></td>
-                            <td th:text=" ${employee.position}"></td>
-                            <td th:text=" ${employee.position}"></td>
+                            
+                            <td> <a th:href="@{/admin/employees/id={id}(id=${employee.id})}" th:text=" ${employee.id}" > </a></td>    
+                            
+                            <td th:text=" ${employee.last}"></td>
+                            <td th:text=" ${employee.first}"></td>
+                            <td th:text=" ${employee.position}"></td>   
+                            
+                            <td th:text="'$' + ${#numbers.formatDecimal(employee.salary, 0, 'COMMA', 0, 'POINT')} + '.00'"></td>
+                            <!--For example, $3,000,000.00--> 
+                            
+                            <td th:text="${employee.isBusy ? 'Yes' : 'No'}"></td>
+                            <!--Is the employee busy? Yes or No-->
+                            
+                            <td th:text=" ${employee.tasksSuccess}"></td>
+                            
+                            <td th:text="${#temporals.format(employee.dateHired, 'dd MMMM yyyy - HH:mm:ss')}"></td>
+                            <!--For example, "15 April 2023 - 17:45:12"-->
                         </tr>                        
 
                     </tbody>
