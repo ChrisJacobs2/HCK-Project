@@ -26,7 +26,7 @@ public class TaskService {
         repo.deleteById(taskId);
     }
 
-    void saveTask(Task task) {
+    public void saveTask(Task task) {
 
         repo.save(task);
     }

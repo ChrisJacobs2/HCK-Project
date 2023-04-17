@@ -1,4 +1,4 @@
-package com.csc340sp23.admin;
+package com.csc340sp23.admin.employees;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class EmployeeService {
         repo.deleteById(employeeId);
     }
 
-    void saveEmployee(Employee employee) {
+    public void saveEmployee(Employee employee) {
         
         repo.save(employee);
     }
