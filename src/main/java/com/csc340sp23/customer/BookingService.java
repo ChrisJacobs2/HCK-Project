@@ -1,6 +1,8 @@
 package com.csc340sp23.customer;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,16 @@ public class BookingService {
         Random rand = new Random();
         int roomNum = rand.nextInt(400) + 100;
         return "R" + roomNum;
+    }
+   public List<String> getAllRoomTypes() {
+        List<String> roomTypes = Arrays.asList("Single Room", "Double Room", "Suite");
+        List<Booking> bookings = bookingRepository.findAll();
+        for (Booking booking : bookings) {
+            if (!roomTypes.contains(booking.getRoomType())) {
+                roomTypes.add(booking.getRoomType());
+            }
+        }
+        return roomTypes;
     }
    
  
