@@ -79,7 +79,7 @@ public class AdminController {
         model.addAttribute("task", taskService.getTask(taskId));
         return "management/tasks/details-task";
     }
-    
+    /*
     @GetMapping("/tasks/delete/id={taskId}")
     public String deleteTask(@PathVariable long taskId, Model model) {
         
@@ -94,7 +94,7 @@ public class AdminController {
         
         taskService.deleteTask(taskId);
         return "redirect:/admin/tasks";
-    }
+    }*/
     
     @GetMapping("/tasks/modify/id={taskId}")
     public String updateTaskForm(@PathVariable long taskId, Model model) {
