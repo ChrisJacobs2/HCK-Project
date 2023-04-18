@@ -18,18 +18,20 @@
             <h1 style="text-align:center;" th:text="${employee.last + ', ' + employee.first}" />
 
             <div class="card" style="width: 18rem;">  
-                <img class="card-img-top" src="https://media.tenor.com/_02jugOehccAAAAM/wario-one-of-my-greatest-achievement.gif" alt="Card image cap"/>
+                <img class="card-img-top" th:src="${imgUrl}" alt="Card image cap"/>
                 <div class="card-body">
                     <h3 class="card-title" th:text="${employee.position}" />
                     
                     <p th:if="${employee.tasksTotal != 0}">Tasks completed: <span th:text="${employee.tasksSuccess} + '/' + ${employee.tasksTotal}"></span></p>
                     
                     <!--Check if the employee has tasks before displaying the latest task assigned--> 
-                    <th:block th:with="latestTask=${employee.tasks[#lists.size(employee.tasks) - 1]}">
-                        <h4>Latest task assigned:</h4>
-                        <h5 th:text="${latestTask.taskName}" />
-                        <h6 th:text="${latestTask.taskDesc}" />
-                        <p th:text="${#temporals.format(latestTask.taskStartTime, 'dd MMM yyyy')}" />
+                    <th:block th:if="${not #lists.isEmpty(employee.tasks)}">
+                        <th:block th:with="latestTask=${employee.tasks[#lists.size(employee.tasks) - 1]}">
+                            <h4>Latest task assigned:</h4>
+                            <h5 th:text="${latestTask.taskName}" />
+                            <h6 th:text="${latestTask.taskDesc}" />
+                            <p th:text="${#temporals.format(latestTask.taskStartTime, 'dd MMM yyyy')}" />
+                        </th:block>
                     </th:block>
                     <th:block th:if="${#lists.isEmpty(employee.tasks)}">
                         <p>No tasks assigned</p>

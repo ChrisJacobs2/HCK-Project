@@ -1,11 +1,16 @@
 package com.csc340sp23.admin;
 
+import com.csc340sp23.PrototypeDemoApplication;
+import static com.csc340sp23.PrototypeDemoApplication.imageUrls;
+import static com.csc340sp23.PrototypeDemoApplication.soyTenor;
 import com.csc340sp23.admin.employees.EmployeeService;
 import com.csc340sp23.admin.employees.Employee;
 import com.csc340sp23.admin.task.TaskService;
 import com.csc340sp23.admin.task.Task;
 import com.csc340sp23.customer.helpdesk.HelpDeskService;
 import com.csc340sp23.customer.helpdesk.HelpDesk;
+import java.util.ArrayList;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,18 +40,26 @@ public class AdminController {
     HelpDeskService helpDeskService;
     
     @GetMapping("/home")
-    public String getHome() {
+    public String getHome(Model model) {
+               
+        String randomImageUrlSoy = PrototypeDemoApplication.soyTenor();
+        String randomImageUrlEng = PrototypeDemoApplication.engieTenor();
+        model.addAttribute("imageUrlEng", randomImageUrlEng);
+        model.addAttribute("imageUrlSoy", randomImageUrlSoy);
         return "management/home";
     }
     
     @GetMapping("/complaints")
-    public String getComplaints() {
+    public String getComplaints(Model model) {
+        model.addAttribute("complaintList", helpDeskService.getAllMessages());
         return "management/complaints/list-complaints";
     }
-    
-    @GetMapping("/complaints/details")
-    public String getComplaintDetails() {
-        return "management/complaints/details-complaints";
+
+    @GetMapping("/deletecomplaint/complaints/messageId={messageId}")
+    public String deleteHelpDesk(@PathVariable long messageId) {
+        helpDeskService.deleteMessageById(messageId);
+        return "redirect:/admin/complaints";
+
     }
     
     @GetMapping("/tasks")
@@ -95,12 +108,6 @@ public class AdminController {
         return "redirect:/admin/tasks";
     }
     
-//    @PostMapping("/tasks/create")
-//    public String createTask(Task task) {
-//        task.setEmployee(employeeService.getEmployeeById(employeeId));
-//        taskService.saveTask(task);
-//        return "redirect:/admin/tasks";
-//    }
     
     @PostMapping("/tasks/create")
     public String createTask(@ModelAttribute("task") Task task, @RequestParam("employeeId") Long employeeId) {
@@ -118,6 +125,7 @@ public class AdminController {
     
     @GetMapping("/employees/id={employeeId}")
     public String getEmployee(@PathVariable long employeeId, Model model) {
+        model.addAttribute("imgUrl", PrototypeDemoApplication.soyImg());
         model.addAttribute("employee", employeeService.getEmployee(employeeId));
         return "management/employees/employee-details";
     }

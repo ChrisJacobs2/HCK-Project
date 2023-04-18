@@ -62,7 +62,7 @@ public class ProjectController {
         }
 
         userService.saveUser(userDto);
-        return "redirect:/register?success";
+        return "redirect:/";
     }
     
     @GetMapping("/login")

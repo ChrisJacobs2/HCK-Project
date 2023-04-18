@@ -38,14 +38,14 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/home").permitAll()
-                                .requestMatchers("/user/home").hasRole("CUSTOMER")
                                 .requestMatchers("/user/**").hasRole("CUSTOMER")
-                                .requestMatchers("/**").hasRole("ADMIN")
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/").hasAnyRole("ADMIN", "CUSTOMER")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/home")
+                                .defaultSuccessUrl("/")
                                 .permitAll()
                 ).logout(
                         logout -> logout
