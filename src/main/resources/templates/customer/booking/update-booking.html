@@ -46,9 +46,15 @@
                                         <td><input type="text" th:field="*{roomNumber}" value="${booking.roomNumber}" readonly/></td>
                                     </tr>
                                     <tr>
-                                        <td>Room Selection:</td>
-                                        <td><input type="text" th:field="*{roomType}" value="${booking.roomType}"/></td>
-
+                                        <td>Room Type:</td>
+                                        <td>
+                                            <select th:field="*{roomType}" class="form-control">
+                                                <option value="single">Single Room</option>
+                                                <option value="double">Double Room</option>
+                                                <option value="suite">Suite</option>
+                                                <option value="executivesuite">Executive Suite</option>
+                                            </select>
+                                        </td>
                                     </tr>
                                     
                                         <td>Check-In-Date:</td>
