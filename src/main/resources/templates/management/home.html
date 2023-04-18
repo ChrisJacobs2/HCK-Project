@@ -12,7 +12,7 @@
         
         
     </head>
-    <body>
+    <body style="background: linear-gradient(to bottom, orange, purple); background-repeat: no-repeat;">
         <div class="container">
             <h1 style="text-align:center;">Admin Home</h1>
             
@@ -20,8 +20,8 @@
             <div class="col-sm-6">
             <div class="card" style="width: 18rem;">   
                 <img class="card-img-top" src="https://www.customerexperienceinsight.com/wp-content/uploads/2013/07/163541848.jpg" alt="Card image cap"/>
-                <div class="card-body">
-                    <!--<h5 class="card-title">Sample-Title</h5>-->
+                <div class="card-body" style="background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTExOWMwNzYwYThlN2YxMDU5NTdjMTgwYThjOGY0NzY3ZTJkYjdkOCZjdD1n/flVpNwvx4m4Mw/giphy.gif'); background-repeat: repeat;">
+                    
                     <a href="/admin/complaints" class="btn btn-primary" >Customer Complaints</a>
                     
                     
@@ -31,9 +31,9 @@
             
             <div class="col-sm-6">
             <div class="card" style="width: 18rem;">   
-                <img class="card-img-top" src="https://media.tenor.com/7Tsxz0BcjosAAAAM/animan-studio-rusi%C5%9B.gif" alt="Card image cap"/>
-                <div class="card-body">
-                    <!--<h5 class="card-title">Sample-Title</h5>-->
+                <img class="card-img-top" th:src="${imageUrlEng}" alt="Card image cap"/>
+                <div class="card-body" style="background-image: url('https://media1.giphy.com/media/6p26sp0YT2LAI/giphy.gif?cid=ecf05e47ikdmmu9k7gybu5s1mww9g7y7mofra2xsiomeumdz&rid=giphy.gif&ct=g'); background-repeat: repeat;">
+                    
                     
                     <a href="/admin/tasks" class="btn btn-primary" >List Tasks</a>
                     
@@ -43,9 +43,10 @@
             
             <div class="col-sm-6">
             <div class="card" style="width: 18rem;">   
-                <img class="card-img-top" src="https://i.redd.it/adwrn9v0tff71.jpg" alt="Card image cap"/>
-                <div class="card-body">
-                    <!--<h5 class="card-title">Sample-Title</h5>-->
+                <!--<img class="card-img-top" src="https://i.redd.it/adwrn9v0tff71.jpg" alt="Card image cap"/>-->
+                <img class="card-img-top" th:src="${imageUrlSoy}" alt="Card image cap"/>
+                <div class="card-body" style="background-image: url('https://thumbs.gfycat.com/HarmoniousBlindBrocketdeer-max-1mb.gif'); background-repeat: repeat;">
+                    
                     
                     <a href="/admin/employees" class="btn btn-primary" >Employees</a>
                   </div>

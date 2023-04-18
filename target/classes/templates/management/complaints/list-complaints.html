@@ -11,7 +11,7 @@
               integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
 
     </head>
-    <body>
+    <body style="background: linear-gradient(to right, #ffd700, #800080);">
         <a href="/admin/home" class="btn btn-primary">Home</a>
         <div class="container">
 
@@ -22,100 +22,27 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Desc</th>
-                            <th>Last Name</th>
-                            <th>Date</th>
+                            <th class="text-center">Action</th>
+                            <th>Guest Name</th>
+                            <th>Message Content</th>
+                            <th>Message Date</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><a href="/admin/complaints/details" th:text="1" > </a> </td>
-                            <td>Toilet Clogged</td>
-                            <td>What the title says 😋</td>
-                            <td>Fitzgerald</td>
-                            <td>09 JUL 2018</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/complaints/details" th:text="2" > </a> </td>
-                            <td>Pest Control</td>
-                            <td>Hello. I saw a cockroach on the way to the lobby 😱</td>
-                            <td>Massey</td>
-                            <td>25 AUG 2018</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/complaints/details" th:text="3" > </a> </td>
-                            <td>I can't stop listening to dance monkey by by Tones and I 😩</td>
-                            <td>Please play it in the lobby sometime</td>
-                            <td>Fuller</td>
-                            <td>01 OCT 2018</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/complaints/details" th:text="4"></a></td>
-                            <td>Room haunted by a ghost 👻</td>
-                            <td>The ghost keeps snoring and it's keeping me up at night</td>
-                            <td>Spencer</td>
-                            <td>14 MAR 2019</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/complaints/details" th:text="5"></a></td>
-                            <td>No hot water in shower ☔️</td>
-                            <td>The only thing I wanted was a hot shower but I had to settle for a cold one.</td>
-                            <td>Hunter</td>
-                            <td>22 MAY 2019</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/complaints/details" th:text="6"></a></td>
-                            <td>Breakfast was inedible 🤮</td>
-                            <td>I didn't know eggs could be both rubbery and slimy at the same time.</td>
-                            <td>McGraw</td>
-                            <td>01 JUN 2019</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/complaints/details" th:text="7"></a></td>
-                            <td>Room service never came 🙄</td>
-                            <td>I ordered food and waited for 2 hours but no one showed up</td>
-                            <td>Clark</td>
-                            <td>05 AUG 2019</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/complaints/details" th:text="8"></a></td>
-                            <td>TV remote control missing 📺</td>
-                            <td>I can't change the channel, the volume or turn off the TV. Help!</td>
-                            <td>Daniels</td>
-                            <td>25 SEP 2019</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/complaints/details" th:text="9"></a></td>
-                            <td>Shower curtain too clingy 🤷‍♀️</td>
-                            <td>I feel like I'm in a scene from Psycho every time I take a shower</td>
-                            <td>Bowen</td>
-                            <td>14 FEB 2020</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/complaints/details" th:text="10"></a></td>
-                            <td>Mini-fridge is not cool enough 🌡️</td>
-                            <td>My drinks are lukewarm and it's unacceptable</td>
-                            <td>Brooks</td>
-                            <td>01 APR 2020</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/complaints/details" th:text="11"></a></td>
-                            <td>Pool water is green 🏊‍♂️</td>
-                            <td>It looks like the water hasn't been changed in weeks and it smells funky</td>
-                            <td>Reid</td>
-                            <td>20 JUL 2021</td>
-                        </tr>
-                        <tr>
-                            <td><a href="/admin/complaints/details" th:text="12"></a></td>
-                            <td>Bed sheets had weird stains 🤢</td>
-                            <td>I don't even want to know what those stains were</td>
-                            <td>Watkins</td>
-                            <td>19 AUG 2022</td>
-                        </tr>
-                        
+                        <tr th:each="message : ${complaintList}">
+                            
+                            <td style="background-image: url('https://media.tenor.com/nicIRWJkKIwAAAAC/walter-white-walter.gif'); background-size: cover; background-repeat: no-repeat;">
+                                <a class="btn btn-primary" style="margin: 10px; width: 50%;" th:href="@{/admin/deletecomplaint/complaints/messageId={messageId}(messageId=${message.messageId})}">
+                                  <span>Resolve complaint</span>
+                                  <!--<a th:href="@{/admin/tasks/delete/id={id}(id=${task.id})}" class="btn btn-primary">Remove Task</a>-->
+                                  <!--"@{/user/deletecomplaint/complaints/messageId={messageId}(messageId=${message.messageId})} "-->
+                                </a>
+                            </td>
+                            <td th:text="${message.name}"></td>
+                            <td th:text="${message.messageContent}"></td>
+                            <td th:text="${#temporals.format(message.messageDate, 'dd MMMM yyyy')}"></td>   
 
+                        </tr> 
                     </tbody>
                 </table>
             </div>
